@@ -1,0 +1,67 @@
+query FetchViewer {
+  viewer {
+    name
+    organizations(first: 100) {
+      nodes {
+        id
+        name
+        repositories(first: 100) {
+          nodes {
+            id
+            name
+            pushedAt
+            hasProjectsEnabled
+            owner {
+              login
+            }
+            description
+            forks {
+              totalCount
+            }
+            issues {
+              totalCount
+            }
+            stargazers {
+              totalCount
+            }
+            watchers {
+              totalCount
+            }
+            pullRequests {
+              totalCount
+            }
+          }
+        }
+      }
+    }
+    repositories(first: 100) {
+      totalCount
+      totalDiskUsage
+      nodes {
+        id
+        name
+        pushedAt
+        hasProjectsEnabled
+        owner {
+          login
+        }
+        description
+        forks {
+          totalCount
+        }
+        issues {
+          totalCount
+        }
+        stargazers {
+          totalCount
+        }
+        watchers {
+          totalCount
+        }
+        pullRequests {
+          totalCount
+        }
+      }
+    }
+  }
+}

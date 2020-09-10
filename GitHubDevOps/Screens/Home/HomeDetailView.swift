@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DetailView: View {
+struct HomeDetailView: View {
     var repository:Repository
     
     var body: some View {
@@ -23,8 +23,8 @@ struct DetailView: View {
     }
 }
 
-struct DetailView_Previews: PreviewProvider {
+struct HomeDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(repository: Repository.default)
+        HomeDetailView(repository: Repository.default)
     }
 }
