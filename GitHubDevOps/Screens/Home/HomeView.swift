@@ -15,7 +15,6 @@ struct HomeView: View {
     @EnvironmentObject var viewer: GetViewer
 
     var body: some View {
-        NavigationView{
             Form {
                 Section(header: Text("User Information")) {
                     Text(viewer.viewer.userName)
@@ -36,11 +35,9 @@ struct HomeView: View {
                     }
                     
                 }
-            }
-            //.navigationBarTitle("My stuff")
             .navigationViewStyle(StackNavigationViewStyle())
 
-            Text("Second View")
+            
         }
        
     }
