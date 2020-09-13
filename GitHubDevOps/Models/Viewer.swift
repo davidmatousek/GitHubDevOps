@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Viewer {
+    
     var userName = ""
     var repositories = [Repository]()
     var organizations = [Organization]()
@@ -17,11 +19,13 @@ struct Viewer {
 
 class GetViewer: ObservableObject {
     @Published var viewer: Viewer
+    var bearerToken: String
     
-    init() {
+    init(bearerToken: String) {
         print("running loadData")
         self.viewer = Viewer()
-        fetchViewer()
+        self.bearerToken = bearerToken
+        //fetchViewer()
     }
     
     func fetchViewer() {

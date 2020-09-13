@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct OrganizationView: View {
-    //@ObservedObject private var viewer: GetViewer = GetViewer()
     var organization:Organization
     
     var body: some View {

@@ -7,12 +7,15 @@
 
 import Foundation
 import Apollo
+import SwiftUI
 //class Network {
 //  static let shared = Network()
 //
 //  private(set) lazy var apollo = ApolloClient(url: URL(string: "https://api.github.com/graphql")!)
 //}
 class Network {
+  @EnvironmentObject var viewer: GetViewer
+    
   static let shared = Network()
 
   // Configure the network transport to use the singleton as the delegate.
@@ -42,14 +45,17 @@ extension Network: HTTPNetworkTransportPreflightDelegate {
     var headers = request.allHTTPHeaderFields ?? [String: String]()
 
     // Add any new headers you need
-    var keys: NSDictionary?
-    if let path = Bundle.main.path(forResource: "Keys", ofType: "plist") {
-           keys = NSDictionary(contentsOfFile: path)
-       }
-    if let dict = keys {
-        let githubToken = (dict["GitHubToken"] as? String)!
-        headers["Authorization"] = "Bearer " + githubToken
-    }
+    headers["Authorization"] = "Bearer " + (UserDefaults.standard.string(forKey: "Bearer"))!
+//    var keys: NSDictionary?
+//    if let path = Bundle.main.path(forResource: "Keys", ofType: "plist") {
+//           keys = NSDictionary(contentsOfFile: path)
+//       }
+//    if let dict = keys {
+//        let githubToken = (dict["GitHubToken"] as? String)!
+//        headers["Authorization"] = "Bearer " + githubToken
+//        //print (settings.OAuthString)
+//        //headers["Authorization"] = "token " + settings.OAuthString
+//    }
     
     // Re-assign the updated headers to the request.
     request.allHTTPHeaderFields = headers

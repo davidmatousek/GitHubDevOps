@@ -6,14 +6,14 @@
 //
 
 import SwiftUI
+import AuthenticationServices
 
-extension String: Identifiable {
-    public var id: String { self }
-}
+
 
 struct HomeView: View {
-    @ObservedObject private var viewer: GetViewer = GetViewer()
-    
+
+    @EnvironmentObject var viewer: GetViewer
+
     var body: some View {
         NavigationView{
             Form {
@@ -39,6 +39,7 @@ struct HomeView: View {
             }
             //.navigationBarTitle("My stuff")
             .navigationViewStyle(StackNavigationViewStyle())
+
             Text("Second View")
         }
        

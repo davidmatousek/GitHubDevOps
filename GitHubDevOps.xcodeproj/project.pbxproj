@@ -26,6 +26,7 @@
 		009A2B0225028A3B007484F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 009A2B0025028A3B007484F5 /* LaunchScreen.storyboard */; };
 		009A2B0D25028A3C007484F5 /* GitHubDevOpsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009A2B0C25028A3C007484F5 /* GitHubDevOpsTests.swift */; };
 		009A2B1825028A3C007484F5 /* GitHubDevOpsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009A2B1725028A3C007484F5 /* GitHubDevOpsUITests.swift */; };
+		00AC5AE0250D8A8B00DD542A /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AC5ADF250D8A8B00DD542A /* Login.swift */; };
 		00E9C16B2506CCA50075BAA4 /* HomeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E9C16A2506CCA50075BAA4 /* HomeDetailView.swift */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		009A2B1325028A3C007484F5 /* GitHubDevOpsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHubDevOpsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		009A2B1725028A3C007484F5 /* GitHubDevOpsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubDevOpsUITests.swift; sourceTree = "<group>"; };
 		009A2B1925028A3C007484F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00AC5ADF250D8A8B00DD542A /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		00E9C16A2506CCA50075BAA4 /* HomeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,6 +116,7 @@
 		00027CF32509A54800AE31C2 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				00AC5ADE250D8A7700DD542A /* Login */,
 				00027CF7250A5FAE00AE31C2 /* Organization */,
 				00027CF42509A55200AE31C2 /* Home */,
 			);
@@ -210,6 +213,14 @@
 				009A2B1925028A3C007484F5 /* Info.plist */,
 			);
 			path = GitHubDevOpsUITests;
+			sourceTree = "<group>";
+		};
+		00AC5ADE250D8A7700DD542A /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				00AC5ADF250D8A8B00DD542A /* Login.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -376,6 +387,7 @@
 				00027CF62509A5F700AE31C2 /* Viewer.swift in Sources */,
 				00027CF9250A5FDB00AE31C2 /* OrganizationView.swift in Sources */,
 				0078AE092502D0FA004F9CF3 /* Network.swift in Sources */,
+				00AC5AE0250D8A8B00DD542A /* Login.swift in Sources */,
 				00027CFB250A5FF400AE31C2 /* OrganizationDetailView.swift in Sources */,
 				00E9C16B2506CCA50075BAA4 /* HomeDetailView.swift in Sources */,
 				00027CF22509A40D00AE31C2 /* Organization.swift in Sources */,
