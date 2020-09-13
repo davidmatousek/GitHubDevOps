@@ -12,6 +12,7 @@ public final class FetchViewerQuery: GraphQLQuery {
       viewer {
         __typename
         name
+        avatarUrl
         organizations(first: 100) {
           __typename
           nodes {
@@ -137,6 +138,7 @@ public final class FetchViewerQuery: GraphQLQuery {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
           GraphQLField("name", type: .scalar(String.self)),
+          GraphQLField("avatarUrl", type: .nonNull(.scalar(String.self))),
           GraphQLField("organizations", arguments: ["first": 100], type: .nonNull(.object(Organization.selections))),
           GraphQLField("repositories", arguments: ["first": 100], type: .nonNull(.object(Repository.selections))),
         ]
@@ -148,8 +150,8 @@ public final class FetchViewerQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(name: String? = nil, organizations: Organization, repositories: Repository) {
-        self.init(unsafeResultMap: ["__typename": "User", "name": name, "organizations": organizations.resultMap, "repositories": repositories.resultMap])
+      public init(name: String? = nil, avatarUrl: String, organizations: Organization, repositories: Repository) {
+        self.init(unsafeResultMap: ["__typename": "User", "name": name, "avatarUrl": avatarUrl, "organizations": organizations.resultMap, "repositories": repositories.resultMap])
       }
 
       public var __typename: String {
@@ -168,6 +170,16 @@ public final class FetchViewerQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "name")
+        }
+      }
+
+      /// A URL pointing to the user's public avatar.
+      public var avatarUrl: String {
+        get {
+          return resultMap["avatarUrl"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "avatarUrl")
         }
       }
 

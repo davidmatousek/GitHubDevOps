@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 import AuthenticationServices
 
 
@@ -35,11 +36,24 @@ struct HomeView: View {
                     }
                     
                 }
-            .navigationViewStyle(StackNavigationViewStyle())
-
+            //
             
         }
-       
+        .navigationViewStyle(StackNavigationViewStyle())
+        .navigationBarItems(trailing:
+            Button(action: {
+                //add code to navigate to viewer view
+            }) {
+                if viewer.viewer.avatarURL != "" {
+                    RemoteImage(url: viewer.viewer.avatarURL)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 50)
+                        .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+
+                }
+
+            }
+        )
     }
 }
 struct HomeView_Previews: PreviewProvider {
@@ -48,5 +62,3 @@ struct HomeView_Previews: PreviewProvider {
     }
 }
 
-
-    

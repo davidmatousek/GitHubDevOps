@@ -59,6 +59,7 @@ struct Login: View {
                 getAuthTokenWithWebLogin(context: ShimViewController())
             } else {
                 viewer.bearerToken = UserDefaults.standard.string(forKey: "Bearer")!
+                print("Bearer \(viewer.bearerToken)")
                 viewer.fetchViewer()
                 self.pushActive = true
             }

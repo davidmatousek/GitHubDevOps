@@ -27,6 +27,7 @@
 		009A2B0D25028A3C007484F5 /* GitHubDevOpsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009A2B0C25028A3C007484F5 /* GitHubDevOpsTests.swift */; };
 		009A2B1825028A3C007484F5 /* GitHubDevOpsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009A2B1725028A3C007484F5 /* GitHubDevOpsUITests.swift */; };
 		00AC5AE0250D8A8B00DD542A /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AC5ADF250D8A8B00DD542A /* Login.swift */; };
+		00C5CF88250EDC52009B4B67 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C5CF87250EDC52009B4B67 /* RemoteImage.swift */; };
 		00E9C16B2506CCA50075BAA4 /* HomeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E9C16A2506CCA50075BAA4 /* HomeDetailView.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		009A2B1725028A3C007484F5 /* GitHubDevOpsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubDevOpsUITests.swift; sourceTree = "<group>"; };
 		009A2B1925028A3C007484F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00AC5ADF250D8A8B00DD542A /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		00C5CF87250EDC52009B4B67 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 		00E9C16A2506CCA50075BAA4 /* HomeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,6 +121,7 @@
 				00AC5ADE250D8A7700DD542A /* Login */,
 				00027CF7250A5FAE00AE31C2 /* Organization */,
 				00027CF42509A55200AE31C2 /* Home */,
+				00C5CF87250EDC52009B4B67 /* RemoteImage.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				00AC5AE0250D8A8B00DD542A /* Login.swift in Sources */,
 				00027CFB250A5FF400AE31C2 /* OrganizationDetailView.swift in Sources */,
 				00E9C16B2506CCA50075BAA4 /* HomeDetailView.swift in Sources */,
+				00C5CF88250EDC52009B4B67 /* RemoteImage.swift in Sources */,
 				00027CF22509A40D00AE31C2 /* Organization.swift in Sources */,
 				009A2AF625028A3A007484F5 /* AppDelegate.swift in Sources */,
 				009A2AF825028A3A007484F5 /* SceneDelegate.swift in Sources */,

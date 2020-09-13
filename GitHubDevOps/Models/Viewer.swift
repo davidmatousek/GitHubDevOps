@@ -11,10 +11,11 @@ import SwiftUI
 struct Viewer {
     
     var userName = ""
+    var avatarURL = ""
     var repositories = [Repository]()
     var organizations = [Organization]()
     
-    static let `default` = Viewer(userName:"", repositories: [Repository](), organizations: [Organization]())
+    static let `default` = Viewer(userName:"", avatarURL:"", repositories: [Repository](), organizations: [Organization]())
 }
 
 class GetViewer: ObservableObject {
@@ -33,6 +34,7 @@ class GetViewer: ObservableObject {
               switch result {
               case .success(let graphQLResult):
                 self.viewer.userName = graphQLResult.data!.viewer.name!
+                self.viewer.avatarURL = graphQLResult.data!.viewer.avatarUrl
                 for repository in graphQLResult.data!.viewer.repositories.nodes! {
                     if repository != nil {
                         //self.repositories.append(repository!.name)
