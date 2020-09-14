@@ -35,7 +35,7 @@ struct Login: View {
     var body: some View {
         NavigationView {
             VStack{
-                NavigationLink(destination: HomeView(), isActive: self.$pushActive) {
+                NavigationLink(destination: HomeView().navigationBarBackButtonHidden(true), isActive: self.$pushActive) {
                             HStack{
                                 Image("github3")
                                     .resizable()

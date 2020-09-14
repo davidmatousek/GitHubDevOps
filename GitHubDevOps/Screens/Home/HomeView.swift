@@ -36,6 +36,7 @@ struct HomeView: View {
                     }
                     
                 }
+                .navigationBarBackButtonHidden(true)
             //
             
         }
@@ -47,7 +48,7 @@ struct HomeView: View {
                 if viewer.viewer.avatarURL != "" {
                     RemoteImage(url: viewer.viewer.avatarURL)
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 50)
+                        .frame(width: 40)
                         .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
 
                 }
