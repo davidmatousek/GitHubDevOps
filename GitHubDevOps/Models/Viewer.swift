@@ -12,6 +12,10 @@ struct Viewer {
     
     var userName = ""
     var avatarURL = ""
+    var company = ""
+    var email = ""
+    var location = ""
+    var twitterUsername = ""
     var repositories = [Repository]()
     var organizations = [Organization]()
     
@@ -35,6 +39,10 @@ class GetViewer: ObservableObject {
               case .success(let graphQLResult):
                 self.viewer.userName = graphQLResult.data!.viewer.name!
                 self.viewer.avatarURL = graphQLResult.data!.viewer.avatarUrl
+                self.viewer.company = graphQLResult.data!.viewer.company ?? ""
+                self.viewer.email = graphQLResult.data!.viewer.email
+                self.viewer.location = graphQLResult.data!.viewer.location ?? ""
+                self.viewer.twitterUsername = graphQLResult.data!.viewer.twitterUsername ?? ""
                 for repository in graphQLResult.data!.viewer.repositories.nodes! {
                     if repository != nil {
                         //self.repositories.append(repository!.name)

@@ -1,7 +1,11 @@
 query FetchViewer {
   viewer {
     name
+    company
+    email
     avatarUrl
+    location
+    twitterUsername
     organizations(first: 100) {
       nodes {
         id

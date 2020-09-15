@@ -14,7 +14,8 @@ import AuthenticationServices
 struct HomeView: View {
 
     @EnvironmentObject var viewer: GetViewer
-
+    @State private var showingViewerView = false
+    
     var body: some View {
             Form {
                 Section(header: Text("User Information")) {
@@ -36,25 +37,34 @@ struct HomeView: View {
                     }
                     
                 }
-                .navigationBarBackButtonHidden(true)
+                //.navigationBarBackButtonHidden(true)
             //
             
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarItems(trailing:
+//                                NavigationLink(destination: ViewerView()) {
+//                if viewer.viewer.avatarURL != "" {
+//                    RemoteImage(url: viewer.viewer.avatarURL)
+//                        .aspectRatio(contentMode: .fit)
+//                        .frame(width: 40)
+//                        .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+//                    }
+//            }
             Button(action: {
-                //add code to navigate to viewer view
+                self.showingViewerView = true
             }) {
                 if viewer.viewer.avatarURL != "" {
                     RemoteImage(url: viewer.viewer.avatarURL)
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 40)
                         .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
-
+                    }
                 }
-
+            )
+        .sheet(isPresented: $showingViewerView) {
+                ViewerView()
             }
-        )
     }
 }
 struct HomeView_Previews: PreviewProvider {

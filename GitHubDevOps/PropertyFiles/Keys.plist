@@ -7,7 +7,7 @@
 	<key>client_id</key>
 	<string>da77dbddedbe07f60ecd</string>
 	<key>client_secret</key>
-	<string>dff979e308cbfa96ea545ba387f9fbd737306393</string>
+	<string>d9cbcc613a218a7685e5c15fe42bc261e2fb7d4d</string>
 	<key>redirect_uri</key>
 	<string>octonotes://auth</string>
 </dict>

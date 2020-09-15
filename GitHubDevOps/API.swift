@@ -12,7 +12,11 @@ public final class FetchViewerQuery: GraphQLQuery {
       viewer {
         __typename
         name
+        company
+        email
         avatarUrl
+        location
+        twitterUsername
         organizations(first: 100) {
           __typename
           nodes {
@@ -138,7 +142,11 @@ public final class FetchViewerQuery: GraphQLQuery {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
           GraphQLField("name", type: .scalar(String.self)),
+          GraphQLField("company", type: .scalar(String.self)),
+          GraphQLField("email", type: .nonNull(.scalar(String.self))),
           GraphQLField("avatarUrl", type: .nonNull(.scalar(String.self))),
+          GraphQLField("location", type: .scalar(String.self)),
+          GraphQLField("twitterUsername", type: .scalar(String.self)),
           GraphQLField("organizations", arguments: ["first": 100], type: .nonNull(.object(Organization.selections))),
           GraphQLField("repositories", arguments: ["first": 100], type: .nonNull(.object(Repository.selections))),
         ]
@@ -150,8 +158,8 @@ public final class FetchViewerQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(name: String? = nil, avatarUrl: String, organizations: Organization, repositories: Repository) {
-        self.init(unsafeResultMap: ["__typename": "User", "name": name, "avatarUrl": avatarUrl, "organizations": organizations.resultMap, "repositories": repositories.resultMap])
+      public init(name: String? = nil, company: String? = nil, email: String, avatarUrl: String, location: String? = nil, twitterUsername: String? = nil, organizations: Organization, repositories: Repository) {
+        self.init(unsafeResultMap: ["__typename": "User", "name": name, "company": company, "email": email, "avatarUrl": avatarUrl, "location": location, "twitterUsername": twitterUsername, "organizations": organizations.resultMap, "repositories": repositories.resultMap])
       }
 
       public var __typename: String {
@@ -173,6 +181,26 @@ public final class FetchViewerQuery: GraphQLQuery {
         }
       }
 
+      /// The user's public profile company.
+      public var company: String? {
+        get {
+          return resultMap["company"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "company")
+        }
+      }
+
+      /// The user's publicly visible profile email.
+      public var email: String {
+        get {
+          return resultMap["email"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "email")
+        }
+      }
+
       /// A URL pointing to the user's public avatar.
       public var avatarUrl: String {
         get {
@@ -180,6 +208,26 @@ public final class FetchViewerQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "avatarUrl")
+        }
+      }
+
+      /// The user's public profile location.
+      public var location: String? {
+        get {
+          return resultMap["location"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "location")
+        }
+      }
+
+      /// The user's Twitter username.
+      public var twitterUsername: String? {
+        get {
+          return resultMap["twitterUsername"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "twitterUsername")
         }
       }
 

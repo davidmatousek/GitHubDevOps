@@ -13,6 +13,7 @@
 		00027CF9250A5FDB00AE31C2 /* OrganizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00027CF8250A5FDB00AE31C2 /* OrganizationView.swift */; };
 		00027CFB250A5FF400AE31C2 /* OrganizationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00027CFA250A5FF400AE31C2 /* OrganizationDetailView.swift */; };
 		00200C7F25053B41009509F3 /* FetchViewerQuery.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 00200C7E25053B41009509F3 /* FetchViewerQuery.graphql */; };
+		0030FB3E251017FF000715D9 /* ViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030FB3D251017FF000715D9 /* ViewerView.swift */; };
 		005B8F802507F20E006D66B4 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 005B8F7F2507F20E006D66B4 /* Keys.plist */; };
 		0078ADFF2502CC88004F9CF3 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 0078ADFE2502CC88004F9CF3 /* Apollo */; };
 		0078AE012502CC88004F9CF3 /* ApolloWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = 0078AE002502CC88004F9CF3 /* ApolloWebSocket */; };
@@ -26,7 +27,7 @@
 		009A2B0225028A3B007484F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 009A2B0025028A3B007484F5 /* LaunchScreen.storyboard */; };
 		009A2B0D25028A3C007484F5 /* GitHubDevOpsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009A2B0C25028A3C007484F5 /* GitHubDevOpsTests.swift */; };
 		009A2B1825028A3C007484F5 /* GitHubDevOpsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009A2B1725028A3C007484F5 /* GitHubDevOpsUITests.swift */; };
-		00AC5AE0250D8A8B00DD542A /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AC5ADF250D8A8B00DD542A /* Login.swift */; };
+		00AC5AE0250D8A8B00DD542A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AC5ADF250D8A8B00DD542A /* LoginView.swift */; };
 		00C5CF88250EDC52009B4B67 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C5CF87250EDC52009B4B67 /* RemoteImage.swift */; };
 		00E9C16B2506CCA50075BAA4 /* HomeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E9C16A2506CCA50075BAA4 /* HomeDetailView.swift */; };
 /* End PBXBuildFile section */
@@ -55,6 +56,7 @@
 		00027CF8250A5FDB00AE31C2 /* OrganizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationView.swift; sourceTree = "<group>"; };
 		00027CFA250A5FF400AE31C2 /* OrganizationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationDetailView.swift; sourceTree = "<group>"; };
 		00200C7E25053B41009509F3 /* FetchViewerQuery.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FetchViewerQuery.graphql; sourceTree = "<group>"; };
+		0030FB3D251017FF000715D9 /* ViewerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewerView.swift; sourceTree = "<group>"; };
 		005B8F7F2507F20E006D66B4 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Keys.plist; sourceTree = "<group>"; };
 		0078AE032502CDFF004F9CF3 /* schema.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		0078AE062502D0A0004F9CF3 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -73,7 +75,7 @@
 		009A2B1325028A3C007484F5 /* GitHubDevOpsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHubDevOpsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		009A2B1725028A3C007484F5 /* GitHubDevOpsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubDevOpsUITests.swift; sourceTree = "<group>"; };
 		009A2B1925028A3C007484F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00AC5ADF250D8A8B00DD542A /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		00AC5ADF250D8A8B00DD542A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		00C5CF87250EDC52009B4B67 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 		00E9C16A2506CCA50075BAA4 /* HomeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,6 +120,7 @@
 		00027CF32509A54800AE31C2 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				0030FB3C25101783000715D9 /* Viewer */,
 				00AC5ADE250D8A7700DD542A /* Login */,
 				00027CF7250A5FAE00AE31C2 /* Organization */,
 				00027CF42509A55200AE31C2 /* Home */,
@@ -142,6 +145,14 @@
 				00027CFA250A5FF400AE31C2 /* OrganizationDetailView.swift */,
 			);
 			path = Organization;
+			sourceTree = "<group>";
+		};
+		0030FB3C25101783000715D9 /* Viewer */ = {
+			isa = PBXGroup;
+			children = (
+				0030FB3D251017FF000715D9 /* ViewerView.swift */,
+			);
+			path = Viewer;
 			sourceTree = "<group>";
 		};
 		005B8F7E2507F1E0006D66B4 /* PropertyFiles */ = {
@@ -221,7 +232,7 @@
 		00AC5ADE250D8A7700DD542A /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				00AC5ADF250D8A8B00DD542A /* Login.swift */,
+				00AC5ADF250D8A8B00DD542A /* LoginView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -390,13 +401,14 @@
 				00027CF62509A5F700AE31C2 /* Viewer.swift in Sources */,
 				00027CF9250A5FDB00AE31C2 /* OrganizationView.swift in Sources */,
 				0078AE092502D0FA004F9CF3 /* Network.swift in Sources */,
-				00AC5AE0250D8A8B00DD542A /* Login.swift in Sources */,
+				00AC5AE0250D8A8B00DD542A /* LoginView.swift in Sources */,
 				00027CFB250A5FF400AE31C2 /* OrganizationDetailView.swift in Sources */,
 				00E9C16B2506CCA50075BAA4 /* HomeDetailView.swift in Sources */,
 				00C5CF88250EDC52009B4B67 /* RemoteImage.swift in Sources */,
 				00027CF22509A40D00AE31C2 /* Organization.swift in Sources */,
 				009A2AF625028A3A007484F5 /* AppDelegate.swift in Sources */,
 				009A2AF825028A3A007484F5 /* SceneDelegate.swift in Sources */,
+				0030FB3E251017FF000715D9 /* ViewerView.swift in Sources */,
 				0078AE072502D0A0004F9CF3 /* API.swift in Sources */,
 				00027CF02509A3AA00AE31C2 /* Repository.swift in Sources */,
 				009A2AFA25028A3A007484F5 /* HomeView.swift in Sources */,
