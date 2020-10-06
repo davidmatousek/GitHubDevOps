@@ -11,14 +11,24 @@ struct HomeDetailView: View {
     var repository:Repository
     
     var body: some View {
-        VStack {
+        Form {
+            Section {
                Text(repository.name).font(.title)
-               
-               HStack {
-                Text("\(repository.description) - Issues:\(repository.issuesTotalCount)")
-               }
-               
-               Spacer()
+            }
+            Section {
+                HStack{
+                    VStack(alignment: .leading) {
+                        Text("Issues:")
+                    }
+                    Spacer()
+                    VStack(alignment: .trailing) {
+                        Text("\(repository.issuesTotalCount)")
+                    }
+                }
+            }
+            Section(header: Text("Description")) {
+                Text("\(repository.description) ")
+            }
            }
     }
 }
