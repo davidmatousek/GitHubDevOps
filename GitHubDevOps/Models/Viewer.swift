@@ -20,6 +20,17 @@ struct Viewer {
     var organizations = [Organization]()
     
     static let `default` = Viewer(userName:"", avatarURL:"", repositories: [Repository](), organizations: [Organization]())
+    
+    mutating func clearViewer() {
+        self.userName = ""
+        self.avatarURL = ""
+        self.company = ""
+        self.email = ""
+        self.location = ""
+        self.twitterUsername = ""
+        self.repositories = [Repository]()
+        self.organizations = [Organization]()
+    }
 }
 
 class GetViewer: ObservableObject {
@@ -34,6 +45,7 @@ class GetViewer: ObservableObject {
     }
     
     func fetchViewer() {
+            self.viewer.clearViewer()
             Network.shared.apollo.fetch(query: FetchViewerQuery()) { result in
               switch result {
               case .success(let graphQLResult):

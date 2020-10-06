@@ -15,6 +15,7 @@ struct HomeView: View {
 
     @EnvironmentObject var viewer: GetViewer
     @State private var showingViewerView = false
+    @Binding var rootIsActive : Bool
     
     var body: some View {
             Form {
@@ -63,13 +64,13 @@ struct HomeView: View {
                 }
             )
         .sheet(isPresented: $showingViewerView) {
-                ViewerView()
+            ViewerView(shouldPopToRootView: self.$rootIsActive)
             }
     }
 }
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
-    }
-}
+//struct HomeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HomeView()
+//    }
+//}
 

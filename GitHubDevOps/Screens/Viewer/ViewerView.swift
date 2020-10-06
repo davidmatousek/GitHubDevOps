@@ -9,6 +9,9 @@ import SwiftUI
 
 struct ViewerView: View {
     @EnvironmentObject var viewer: GetViewer
+    @Environment(\.presentationMode) var presentationMode
+    @Binding var shouldPopToRootView : Bool
+    
     var body: some View {
         VStack{
             HStack {
@@ -45,7 +48,10 @@ struct ViewerView: View {
                 }
             }
             Button ("Log Out", action: {
-                //Button Logout here
+                UserDefaults.standard.set("", forKey: "Bearer")
+                self.shouldPopToRootView = false
+                self.presentationMode.wrappedValue.dismiss()
+                
             })
             .foregroundColor(.white)
             .padding(10)
@@ -56,8 +62,8 @@ struct ViewerView: View {
     }
 }
 
-struct ViewerView_Previews: PreviewProvider {
-    static var previews: some View {
-        ViewerView()
-    }
-}
+//struct ViewerView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ViewerView()
+//    }
+//}

@@ -35,38 +35,61 @@ struct Login: View {
     var body: some View {
         NavigationView {
             VStack{
-                NavigationLink(destination: HomeView().navigationBarBackButtonHidden(true), isActive: self.$pushActive) {
-                            HStack{
-                                Image("github3")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 64.0, height: 64.0)
-                                Text("Login with GitHub")
-                            }
-                                .foregroundColor(.white)
-                                .padding()
-                                .background(Color.blue)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
+//                NavigationLink(destination: HomeView(rootIsActive: self.$pushActive).navigationBarBackButtonHidden(true), isActive: self.$pushActive) {
+//                            HStack{
+//                                Image("github3")
+//                                    .resizable()
+//                                    .scaledToFit()
+//                                    .frame(width: 64.0, height: 64.0)
+//                                Text("Login with GitHub")
+//                            }
+//                                .foregroundColor(.white)
+//                                .padding()
+//                                .background(Color.blue)
+//                                .clipShape(RoundedRectangle(cornerRadius: 10))
+//                }
+//
+//                //.isDetailLink(false)
+                
+                NavigationLink(destination: HomeView(rootIsActive: self.$pushActive).navigationBarBackButtonHidden(true), isActive: self.$pushActive) {
+                    Button(action: {
+                        print("login tapped")
+                        checkLoginState()
+                    }) {
+                        HStack{
+                            Image("github3")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 64.0, height: 64.0)
+                            Text("Login with GitHub")
+                        }
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color.blue)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
+                    
+                }
             }
         }
         .onAppear(perform: {
             //For Testing 
             //UserDefaults.standard.set("", forKey: "Bearer")
-            if UserDefaults.standard.string(forKey: "Bearer") == nil ||
-                UserDefaults.standard.string(forKey: "Bearer") == "" {
-                isHidden = true
-                getAuthTokenWithWebLogin(context: ShimViewController())
-            } else {
-                viewer.bearerToken = UserDefaults.standard.string(forKey: "Bearer")!
-                print("Bearer \(viewer.bearerToken)")
-                viewer.fetchViewer()
-                self.pushActive = true
-            }
-
+            checkLoginState()
         })
     }
-    
+    func checkLoginState() {
+        if UserDefaults.standard.string(forKey: "Bearer") == nil ||
+            UserDefaults.standard.string(forKey: "Bearer") == "" {
+            isHidden = true
+            getAuthTokenWithWebLogin(context: ShimViewController())
+        } else {
+            viewer.bearerToken = UserDefaults.standard.string(forKey: "Bearer")!
+            print("Bearer \(viewer.bearerToken)")
+            viewer.fetchViewer()
+            self.pushActive = true
+        }
+    }
     
     func getAuthTokenWithWebLogin(context: ASWebAuthenticationPresentationContextProviding) {
 
@@ -121,6 +144,7 @@ struct Login: View {
                                 UserDefaults.standard.set($0.1, forKey: "Bearer")
                                 viewer.bearerToken = UserDefaults.standard.string(forKey: "Bearer")!
                                 viewer.fetchViewer()
+                                self.pushActive = true
                             }
                         }
                     }
