@@ -49,61 +49,63 @@ class GetViewer: ObservableObject {
             Network.shared.apollo.fetch(query: FetchViewerQuery()) { result in
               switch result {
               case .success(let graphQLResult):
-                self.viewer.userName = graphQLResult.data!.viewer.name!
-                self.viewer.avatarURL = graphQLResult.data!.viewer.avatarUrl
-                self.viewer.company = graphQLResult.data!.viewer.company ?? ""
-                self.viewer.email = graphQLResult.data!.viewer.email
-                self.viewer.location = graphQLResult.data!.viewer.location ?? ""
-                self.viewer.twitterUsername = graphQLResult.data!.viewer.twitterUsername ?? ""
-                for repository in graphQLResult.data!.viewer.repositories.nodes! {
-                    if repository != nil {
-                        //self.repositories.append(repository!.name)
-                        //self.repositorieyArray.append(repository!)
-                        var repo = Repository()
-                        repo.id = repository!.id
-                        repo.name = repository!.name
-                        repo.pushedAt = repository!.pushedAt!
-                        repo.hasProjectsEnabled = repository!.hasProjectsEnabled
-                        repo.owner = repository!.owner.login
-                        repo.description = repository!.description ?? ""
-                        repo.forksTotalCount = repository!.forks.totalCount
-                        repo.issuesTotalCount = repository!.issues.totalCount
-                        repo.stargazersTotalCount = repository!.stargazers.totalCount
-                        repo.watchersTotalCount = repository!.watchers.totalCount
-                        repo.pullRequestsTotalCount = repository!.pullRequests.totalCount
-                        self.viewer.repositories.append(repo)
+                guard let data = graphQLResult.data else {
+                    print("Error: No data in GraphQL response")
+                    return
+                }
+                self.viewer.userName = data.viewer.name ?? ""
+                self.viewer.avatarURL = data.viewer.avatarUrl
+                self.viewer.company = data.viewer.company ?? ""
+                self.viewer.email = data.viewer.email ?? ""
+                self.viewer.location = data.viewer.location ?? ""
+                self.viewer.twitterUsername = data.viewer.twitterUsername ?? ""
+                if let repositories = data.viewer.repositories.nodes {
+                    for repository in repositories {
+                        if let repo_data = repository {
+                            var repo = Repository()
+                            repo.id = repo_data.id
+                            repo.name = repo_data.name
+                            repo.pushedAt = repo_data.pushedAt ?? ""
+                            repo.hasProjectsEnabled = repo_data.hasProjectsEnabled
+                            repo.owner = repo_data.owner.login
+                            repo.description = repo_data.description ?? ""
+                            repo.forksTotalCount = repo_data.forks.totalCount
+                            repo.issuesTotalCount = repo_data.issues.totalCount
+                            repo.stargazersTotalCount = repo_data.stargazers.totalCount
+                            repo.watchersTotalCount = repo_data.watchers.totalCount
+                            repo.pullRequestsTotalCount = repo_data.pullRequests.totalCount
+                            self.viewer.repositories.append(repo)
+                        }
                     }
                 }
-                for organization in
-                    graphQLResult.data!.viewer.organizations.nodes! {
-                    if organization != nil {
-                        var org = Organization()
-                        org.name = organization!.name ?? ""
-                        
-                        
-                        
-                        if let repositories = organization?.repositories.nodes {
-                            for repository in repositories {
-                                if repository != nil {
-                                    var repo = Repository()
-                                    repo.id = repository!.id
-                                    repo.name = repository!.name
-                                    repo.pushedAt = repository!.pushedAt!
-                                    repo.hasProjectsEnabled = repository!.hasProjectsEnabled
-                                    repo.owner = repository!.owner.login
-                                    repo.description = repository!.description ?? ""
-                                    repo.forksTotalCount = repository!.forks.totalCount
-                                    repo.issuesTotalCount = repository!.issues.totalCount
-                                    repo.stargazersTotalCount = repository!.stargazers.totalCount
-                                    repo.watchersTotalCount = repository!.watchers.totalCount
-                                    repo.pullRequestsTotalCount = repository!.pullRequests.totalCount
-                                    org.repositories.append(repo)
+                if let organizations = data.viewer.organizations.nodes {
+                    for organization in organizations {
+                        if let org_data = organization {
+                            var org = Organization()
+                            org.name = org_data.name ?? ""
+                            
+                            if let repositories = org_data.repositories.nodes {
+                                for repository in repositories {
+                                    if let repo_data = repository {
+                                        var repo = Repository()
+                                        repo.id = repo_data.id
+                                        repo.name = repo_data.name
+                                        repo.pushedAt = repo_data.pushedAt ?? ""
+                                        repo.hasProjectsEnabled = repo_data.hasProjectsEnabled
+                                        repo.owner = repo_data.owner.login
+                                        repo.description = repo_data.description ?? ""
+                                        repo.forksTotalCount = repo_data.forks.totalCount
+                                        repo.issuesTotalCount = repo_data.issues.totalCount
+                                        repo.stargazersTotalCount = repo_data.stargazers.totalCount
+                                        repo.watchersTotalCount = repo_data.watchers.totalCount
+                                        repo.pullRequestsTotalCount = repo_data.pullRequests.totalCount
+                                        org.repositories.append(repo)
+                                    }
                                 }
                             }
+                            self.viewer.organizations.append(org)
                         }
-                        self.viewer.organizations.append(org)
                     }
-                    
                 }
                             
                 print("Success! Result: \(String(describing: self.viewer))")
@@ -112,5 +114,10 @@ class GetViewer: ObservableObject {
               }
             }
         }
+    
+    func clearViewer() {
+        self.viewer.clearViewer()
+        self.bearerToken = ""
+    }
 
 }

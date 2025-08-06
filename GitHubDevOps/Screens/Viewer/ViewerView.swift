@@ -48,7 +48,8 @@ struct ViewerView: View {
                 }
             }
             Button ("Log Out", action: {
-                UserDefaults.standard.set("", forKey: "Bearer")
+                KeychainHelper.shared.deleteBearerToken()
+                viewer.clearViewer()
                 self.shouldPopToRootView = false
                 self.presentationMode.wrappedValue.dismiss()
                 

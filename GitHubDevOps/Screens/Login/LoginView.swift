@@ -79,12 +79,12 @@ struct Login: View {
         })
     }
     func checkLoginState() {
-        if UserDefaults.standard.string(forKey: "Bearer") == nil ||
-            UserDefaults.standard.string(forKey: "Bearer") == "" {
+        let bearerToken = KeychainHelper.shared.getBearerToken()
+        if bearerToken == nil || bearerToken?.isEmpty == true {
             isHidden = true
             getAuthTokenWithWebLogin(context: ShimViewController())
-        } else {
-            viewer.bearerToken = UserDefaults.standard.string(forKey: "Bearer")!
+        } else if let token = bearerToken {
+            viewer.bearerToken = token
             print("Bearer \(viewer.bearerToken)")
             viewer.fetchViewer()
             self.pushActive = true
@@ -105,10 +105,13 @@ struct Login: View {
         
         let authURLstr  = "https://github.com/login/oauth/authorize?client_id=" + client_id + "&scope=user%20public_repo%20repo%20read:repo_hook%20read:org%20read:public_key%20read:gpg_key"
         
-        let authURL = URL(string: authURLstr)
-        let callbackUrlScheme = "LoginExample3"
+        guard let authURL = URL(string: authURLstr) else {
+            print("Error: Invalid OAuth URL")
+            return
+        }
+        let callbackUrlScheme = String(redirect_uri.split(separator: ":")[0])
 
-        self.webAuthSession = ASWebAuthenticationSession.init(url: authURL!, callbackURLScheme: callbackUrlScheme, completionHandler: { (callBack:URL?, error:Error?) in
+        self.webAuthSession = ASWebAuthenticationSession.init(url: authURL, callbackURLScheme: callbackUrlScheme, completionHandler: { (callBack:URL?, error:Error?) in
 
             // handle auth response
             guard error == nil, let successURL = callBack else {
@@ -120,9 +123,17 @@ struct Login: View {
             // Do what you now that you've got the token, or use the callBack URL
             print(oauthToken ?? "No OAuth Token")
             
-            let accessURLstr = "https://github.com/login/oauth/access_token?client_id=" + client_id + "&redirect_uri=" + redirect_uri + "&client_secret=" + client_secret + "&code=" + (oauthToken?.value)!
-            let accessURL = URL(string:accessURLstr)
-            var request = URLRequest(url: accessURL!)
+            guard let tokenValue = oauthToken?.value else {
+                print("Error: No OAuth token value received")
+                return
+            }
+            
+            let accessURLstr = "https://github.com/login/oauth/access_token?client_id=" + client_id + "&redirect_uri=" + redirect_uri + "&client_secret=" + client_secret + "&code=" + tokenValue
+            guard let accessURL = URL(string: accessURLstr) else {
+                print("Error: Invalid access token URL")
+                return
+            }
+            var request = URLRequest(url: accessURL)
             print(request)
             request.httpMethod = "POST"
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
@@ -141,8 +152,8 @@ struct Login: View {
                         items.forEach {
                             if $0.0 == "access_token" {
                                 print("Bearer: \($0.1)")
-                                UserDefaults.standard.set($0.1, forKey: "Bearer")
-                                viewer.bearerToken = UserDefaults.standard.string(forKey: "Bearer")!
+                                KeychainHelper.shared.saveBearerToken($0.1)
+                                viewer.bearerToken = $0.1
                                 viewer.fetchViewer()
                                 self.pushActive = true
                             }

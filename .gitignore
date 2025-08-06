@@ -89,7 +89,8 @@ fastlane/test_output
 
 iOSInjectionProject/
 
-# Property File
+# Property Files
 #
-# Keep Keys.plist private
+# Keep sensitive configuration files private
 Keys.plist
+GitHubDevOps/PropertyFiles/Keys.plist
