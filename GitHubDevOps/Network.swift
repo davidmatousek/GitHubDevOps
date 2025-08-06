@@ -45,7 +45,9 @@ extension Network: HTTPNetworkTransportPreflightDelegate {
     var headers = request.allHTTPHeaderFields ?? [String: String]()
 
     // Add any new headers you need
-    headers["Authorization"] = "Bearer " + (UserDefaults.standard.string(forKey: "Bearer"))!
+    if let bearerToken = KeychainHelper.shared.getBearerToken() {
+        headers["Authorization"] = "Bearer " + bearerToken
+    }
 //    var keys: NSDictionary?
 //    if let path = Bundle.main.path(forResource: "Keys", ofType: "plist") {
 //           keys = NSDictionary(contentsOfFile: path)

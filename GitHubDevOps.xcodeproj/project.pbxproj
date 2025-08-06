@@ -29,6 +29,7 @@
 		009A2B1825028A3C007484F5 /* GitHubDevOpsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009A2B1725028A3C007484F5 /* GitHubDevOpsUITests.swift */; };
 		00AC5AE0250D8A8B00DD542A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AC5ADF250D8A8B00DD542A /* LoginView.swift */; };
 		00C5CF88250EDC52009B4B67 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C5CF87250EDC52009B4B67 /* RemoteImage.swift */; };
+		00KC5AE1250D8A8B00DD543A /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00KC5AE0250D8A8B00DD543A /* KeychainHelper.swift */; };
 		00E9C16B2506CCA50075BAA4 /* HomeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E9C16A2506CCA50075BAA4 /* HomeDetailView.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,7 @@
 		009A2B1925028A3C007484F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00AC5ADF250D8A8B00DD542A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		00C5CF87250EDC52009B4B67 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
+		00KC5AE0250D8A8B00DD543A /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		00E9C16A2506CCA50075BAA4 /* HomeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,6 +201,7 @@
 				009A2AFD25028A3B007484F5 /* Preview Content */,
 				00200C7E25053B41009509F3 /* FetchViewerQuery.graphql */,
 				0078AE082502D0FA004F9CF3 /* Network.swift */,
+				00KC5AE0250D8A8B00DD543A /* KeychainHelper.swift */,
 			);
 			path = GitHubDevOps;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				00027CFB250A5FF400AE31C2 /* OrganizationDetailView.swift in Sources */,
 				00E9C16B2506CCA50075BAA4 /* HomeDetailView.swift in Sources */,
 				00C5CF88250EDC52009B4B67 /* RemoteImage.swift in Sources */,
+				00KC5AE1250D8A8B00DD543A /* KeychainHelper.swift in Sources */,
 				00027CF22509A40D00AE31C2 /* Organization.swift in Sources */,
 				009A2AF625028A3A007484F5 /* AppDelegate.swift in Sources */,
 				009A2AF825028A3A007484F5 /* SceneDelegate.swift in Sources */,

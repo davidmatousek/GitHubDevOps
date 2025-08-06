@@ -5,10 +5,10 @@
 	<key>GitHubToken</key>
 	<string>YOUR_GITHUB_PERSONAL_ACCESS_TOKEN_HERE</string>
 	<key>client_id</key>
-	<string>da77dbddedbe07f60ecd</string>
+	<string>YOUR_GITHUB_OAUTH_CLIENT_ID_HERE</string>
 	<key>client_secret</key>
-	<string>06b252e85ff4e9bb5a16906a1370ecfd0c62142b</string>
+	<string>YOUR_GITHUB_OAUTH_CLIENT_SECRET_HERE</string>
 	<key>redirect_uri</key>
-	<string>com.alphafish.GitHubDevOps://oauth/callback</string>
+	<string>YOUR_OAUTH_CALLBACK_URL_HERE</string>
 </dict>
 </plist>
