@@ -94,3 +94,8 @@ iOSInjectionProject/
 # Keep sensitive configuration files private
 Keys.plist
 GitHubDevOps/PropertyFiles/Keys.plist
+
+# Security Review Files
+#
+# Keep security assessments private
+Security_Review.md
