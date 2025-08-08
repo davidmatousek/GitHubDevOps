@@ -97,10 +97,18 @@ struct Login: View {
         if let path = Bundle.main.path(forResource: "Keys", ofType: "plist") {
                keys = NSDictionary(contentsOfFile: path)
            }
-        if let dict = keys {
-            client_id = (dict["client_id"] as? String) ?? "EMPTY"
-            client_secret = (dict["client_secret"] as? String) ?? "EMPTY"
-            redirect_uri = (dict["redirect_uri"] as? String) ?? "EMPTY"
+        guard let dict = keys else {
+            print("Error: Could not load OAuth configuration from Keys.plist")
+            return
+        }
+        
+        client_id = (dict["client_id"] as? String) ?? "EMPTY"
+        client_secret = (dict["client_secret"] as? String) ?? "EMPTY"
+        redirect_uri = (dict["redirect_uri"] as? String) ?? "EMPTY"
+        
+        guard client_id != "EMPTY" && client_secret != "EMPTY" && redirect_uri != "EMPTY" else {
+            print("Error: Invalid OAuth configuration - missing required keys")
+            return
         }
         
         let authURLstr  = "https://github.com/login/oauth/authorize?client_id=" + client_id + "&scope=user%20public_repo%20repo%20read:repo_hook%20read:org%20read:public_key%20read:gpg_key"
@@ -109,12 +117,17 @@ struct Login: View {
             print("Error: Invalid OAuth URL")
             return
         }
-        let callbackUrlScheme = String(redirect_uri.split(separator: ":")[0])
+        guard let schemeComponent = redirect_uri.split(separator: ":").first else {
+            print("Error: Invalid redirect URI format")
+            return
+        }
+        let callbackUrlScheme = String(schemeComponent)
 
         self.webAuthSession = ASWebAuthenticationSession.init(url: authURL, callbackURLScheme: callbackUrlScheme, completionHandler: { (callBack:URL?, error:Error?) in
 
             // handle auth response
             guard error == nil, let successURL = callBack else {
+                print("Error: OAuth authentication failed - \(error?.localizedDescription ?? "Unknown error")")
                 return
             }
 
@@ -145,8 +158,9 @@ struct Login: View {
                     }
                     if let data = data, let dataString = String(data: data, encoding: .utf8) {
                         print("data: \(dataString)")
-                        let items = dataString.components(separatedBy: "&").compactMap( {pair -> (String, String) in
+                        let items = dataString.components(separatedBy: "&").compactMap( {pair -> (String, String)? in
                             let keyValue = pair.components(separatedBy: "=")
+                            guard keyValue.count >= 2 else { return nil }
                             return (keyValue[0], keyValue[1])
                         })
                         items.forEach {
