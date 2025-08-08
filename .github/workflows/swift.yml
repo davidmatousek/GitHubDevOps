@@ -1,4 +1,5 @@
-name: Swift
+
+  name: Swift
 
   on:
     push:
