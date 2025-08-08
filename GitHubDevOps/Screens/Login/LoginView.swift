@@ -35,21 +35,6 @@ struct Login: View {
     var body: some View {
         NavigationView {
             VStack{
-//                NavigationLink(destination: HomeView(rootIsActive: self.$pushActive).navigationBarBackButtonHidden(true), isActive: self.$pushActive) {
-//                            HStack{
-//                                Image("github3")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .frame(width: 64.0, height: 64.0)
-//                                Text("Login with GitHub")
-//                            }
-//                                .foregroundColor(.white)
-//                                .padding()
-//                                .background(Color.blue)
-//                                .clipShape(RoundedRectangle(cornerRadius: 10))
-//                }
-//
-//                //.isDetailLink(false)
                 
                 NavigationLink(destination: HomeView(rootIsActive: self.$pushActive).navigationBarBackButtonHidden(true), isActive: self.$pushActive) {
                     Button(action: {
@@ -73,8 +58,6 @@ struct Login: View {
             }
         }
         .onAppear(perform: {
-            //For Testing 
-            //UserDefaults.standard.set("", forKey: "Bearer")
             checkLoginState()
         })
     }
@@ -181,8 +164,6 @@ struct Login: View {
         
 
         self.webAuthSession?.presentationContextProvider = context
-        //For testing
-        //self.webAuthSession?.prefersEphemeralWebBrowserSession = true
  
         self.webAuthSession?.start()
     }

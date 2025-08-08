@@ -38,20 +38,10 @@ struct HomeView: View {
                     }
                     
                 }
-                //.navigationBarBackButtonHidden(true)
-            //
             
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarItems(trailing:
-//                                NavigationLink(destination: ViewerView()) {
-//                if viewer.viewer.avatarURL != "" {
-//                    RemoteImage(url: viewer.viewer.avatarURL)
-//                        .aspectRatio(contentMode: .fit)
-//                        .frame(width: 40)
-//                        .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
-//                    }
-//            }
             Button(action: {
                 self.showingViewerView = true
             }) {
@@ -68,9 +58,4 @@ struct HomeView: View {
             }
     }
 }
-//struct HomeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HomeView()
-//    }
-//}
 
