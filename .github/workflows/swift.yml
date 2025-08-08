@@ -1,19 +1,67 @@
 name: Swift
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  on:
+    push:
+      branches: [ master ]
+    pull_request:
+      branches: [ master ]
 
-jobs:
-  build:
+  jobs:
+    security-review:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v4
 
-    runs-on: macos-latest
+      - name: Security Review
+        run: |
+          echo "🔒 Running Security Review..."
 
-    steps:
-    - uses: actions/checkout@v2
-    ##- name: Build
-    ##  run: swift build -v
-    ##- name: Run tests
-    ##  run: swift test -v
+          # Check for sensitive files in commit
+          if find . -name "*.plist" -not -path "./.git/*" | grep -q .; then
+            echo "❌ Found .plist files - checking if they contain 
+  secrets..."
+            find . -name "*.plist" -not -path "./.git/*" -exec echo "Found:
+   {}" \;
+
+            # Check if Keys.plist is properly gitignored
+            if [ -f "Keys.plist" ] || [ -f
+  "GitHubDevOps/PropertyFiles/Keys.plist" ]; then
+              echo "❌ SECURITY RISK: Keys.plist found in repository!"
+              exit 1
+            fi
+          fi
+
+          # Check for hardcoded secrets
+          echo "🔍 Scanning for hardcoded secrets..."
+          if grep -r -i
+  "client_secret\|access_token\|bearer.*[a-zA-Z0-9]{20}"
+  --include="*.swift" --exclude-dir=".git" . | grep -v "// SAFE:" ||
+             grep -r "github_pat_\|ghp_\|gho_\|ghu_\|ghs_\|ghr_"
+  --include="*.swift" --exclude-dir=".git" .; then
+            echo "❌ SECURITY RISK: Potential hardcoded secrets found!"
+            echo "Review the above matches and ensure no real tokens are 
+  committed."
+            exit 1
+          fi
+
+          # Check for unsafe force unwrapping patterns
+          echo "🔍 Checking for unsafe Swift patterns..."
+          UNSAFE_PATTERNS=$(grep -r "!\[" --include="*.swift"
+  --exclude-dir=".git" . || echo "")
+          if [ ! -z "$UNSAFE_PATTERNS" ]; then
+            echo "⚠️  Found potential unsafe array access patterns:"
+            echo "$UNSAFE_PATTERNS"
+          fi
+
+          echo "✅ Security review completed successfully"
+
+    build:
+      runs-on: macos-latest
+      needs: security-review
+
+      steps:
+      - uses: actions/checkout@v4
+      ##- name: Build
+      ##  run: swift build -v
+      ##- name: Run tests
+      ##  run: swift test -v
